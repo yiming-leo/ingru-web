@@ -2,7 +2,7 @@
   <div class="mx-4 container">
     <div class="big-box">
       <div class="big-title">
-        <div class="text-white about-decoration">Service</div>
+        <div class="text-white about-decoration">SERVICE</div>
         <div class="text-white about-title">业务内容</div>
       </div>
       <div class="text-white text-left about-text">

@@ -6,6 +6,11 @@
         <div class="text-white about-title">联系我们</div>
       </div>
 
+      <div class="location-tab">
+        <div class="text-white about-location-btn" @click="changeToLocation(1)">杭州</div>
+        <div class="text-white about-location-btn ml-4" @click="changeToLocation(2)">上海</div>
+      </div>
+
       <div class="all-container">
         <div class="location-container">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -15,7 +20,7 @@
           </svg>
 
           <div class="text-white text-left about-text">
-            浙江省杭州市滨江区星城中心B座1101
+            {{ default_location }}
           </div>
         </div>
 
@@ -27,7 +32,7 @@
           </svg>
 
           <div class="text-white text-left about-text ">
-            it@ingru.ai
+            {{ default_email }}
           </div>
         </div>
         <div class="telephone-container">
@@ -37,18 +42,65 @@
                   d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
           </svg>
           <div class="text-white text-left about-text">
-            +86 17788886513<br>
-            +86 13918186286
+            <!--模板用于解析多个电话号码的换行符-->
+            <template v-for="line in default_telephone.split('\n')">
+              <div>{{ line }}</div>
+            </template>
           </div>
         </div>
       </div>
-
 
     </div>
   </div>
 </template>
 
-<script setup>
+<script>
+export default {
+  data() {
+    return {
+      companyLocationList: [
+        {
+          index: 1,
+          city: '杭州',
+          location: '浙江省杭州市滨江区星城中心B座1101',
+          email: 'it@ingru.ai',
+          telephone: '+86 17788886513\n+86 13918186286',
+          bk_map: "@/assets/img/cop_map_hz.png"
+        },
+        {index: 2, city: '上海', location: '', email: '', telephone: '', bk_map: "@/assets/img/cop_map_sh.png"}
+      ],
+
+      default_city: '杭州',
+      default_location: '浙江省杭州市滨江区星城中心B座1101',
+      default_email: 'it@ingru.ai',
+      default_telephone: '+86 17788886513\n+86 13918186286',
+      default_bk_map: '@/assets/img/cop_map_hz.png'
+    }
+  },
+  computed: {},
+  methods: {
+    changeToLocation(location) {
+      if (location === 1) {
+        this.default_city = '杭州'
+        this.default_location = '浙江省杭州市滨江区星城中心B座1101'
+        this.default_email = 'it@ingru.ai'
+        this.default_telephone = '+86 17788886513\n+86 13918186286'
+        this.default_bk_map = '@/assets/img/cop_map_hz.png'
+      } else if (location === 2) {
+        this.default_city = '上海'
+        this.default_location = '上海市青浦区双联路158号1幢11层S区005室'
+        this.default_email = 'it@ingru.ai'
+        this.default_telephone = '+86 18916939905'
+        this.default_bk_map = '@/assets/img/cop_map_sh.png'
+      }
+      const element = document.querySelector('.all-container');
+      element.classList.remove('animate-location'); // 先移除动画类名
+      setTimeout(() => {
+        element.classList.add('animate-location'); // 一段时间后重新添加动画类名
+      }, 2); // 这里设置一个小延迟，以确保类名移除成功
+    }
+  }
+}
 
 </script>
 
@@ -62,6 +114,51 @@
 
   display: flex;
   flex-direction: column;
+}
+
+.location-tab {
+  display: flex;
+  align-self: start;
+
+  margin: 0px 0px 40px 0px;
+//border: #000000 1px solid;
+}
+
+/* 虚拟类 */
+.animate-location {
+  animation: moveLocation 0.7s ease-in-out;
+}
+
+@keyframes moveLocation {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.about-location-btn {
+  font-size: 20px;
+  padding: 4px 10px 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  backdrop-filter: blur(0px);
+  border: rgba(255, 255, 255, 0.00) 2px solid;
+  transition: all 0.5s ease;
+}
+
+.about-location-btn:hover {
+  font-size: 20px;
+  background: rgba(231, 218, 218, 0.15);
+  padding: 4px 10px 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  border: rgba(255, 255, 255, 1) 2px solid;
+  transition: all 0.5s ease;
 }
 
 .big-box {
@@ -78,6 +175,7 @@
 .big-title {
   align-self: start;
   text-align: left;
+  height: 200px;
 
 //border: #000000 1px solid;
 }
@@ -85,7 +183,7 @@
 .about-decoration {
   opacity: 0.3;
   font-weight: 700;
-  font-size: 12vh;
+  font-size: 10vh;
 //border: #000000 1px solid;
 }
 

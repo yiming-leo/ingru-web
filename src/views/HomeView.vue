@@ -8,7 +8,7 @@
     <div id="footer" class="footer">
       <Footer></Footer>
     </div>
-    <div id="scroll-container" v-smooth-scrollbar class="scroll-container">
+    <div id="scroll-container" v-smooth-scrollbar="{ options: {damping: 0.05} }" class="scroll-container">
       <!--放在首页的视频-->
       <div id="#top" class="top-container">
         <DisplayVideo></DisplayVideo>
@@ -47,6 +47,13 @@ export default {
     Footer,
     DisplayVideo,
     MainMenu,
+  },
+  props: {
+    companyLocationImage: {
+      type: String,
+      required: true,
+      default: "@/assets/img/cop_map_hz.png"
+    }
   },
   data() {
     return {}
@@ -167,12 +174,12 @@ video { /* 控制DisplayVideo内部的video标签的工具 */
 }
 
 .contact-container {
-  background-image: url("@/assets/img/cop_map_hz.png");
+  background-image: url('@/assets/img/cop_map.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  width: 100%;
+  width: 200%;
   height: 100vh;
 }
 </style>

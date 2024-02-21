@@ -66,7 +66,7 @@ export default {
   font-weight: 700;
   font-size: 12vh;
 
-  animation: about-decoration-infinite-slide 7s linear infinite alternate;
+  animation: about-decoration-infinite-slide 3s linear infinite alternate;
   animation-delay: 0.3s;
 //border: #000000 1px solid;
 }
@@ -77,7 +77,7 @@ export default {
 
   bottom: 10vh;
 
-  animation: about-title-infinite-slide 8s linear infinite alternate;
+  animation: about-title-infinite-slide 2.5s linear infinite alternate;
   animation-delay: 0.5s;
 //border: #000000 1px solid;
 }
@@ -88,7 +88,7 @@ export default {
   font-size: 20px;
   max-width: 95%;
 
-  animation: infinite-slide 8s linear infinite alternate;
+  animation: infinite-slide 3s linear infinite alternate;
 //border: #000000 1px solid;
 }
 
