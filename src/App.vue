@@ -14,6 +14,11 @@ html,body {
   height: 100%;
   margin: 0;
   padding: 0;
+
+  ::selection { /* 将文字选择时的蓝色框框颜色 */
+    background-color: rgba(255, 196, 0, 0.6);
+  }
+
 }
 
 /* 添加滚动条样式以保持滚动功能 */

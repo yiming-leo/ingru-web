@@ -1,5 +1,5 @@
 <template>
-  <div class="footer my-2">
+  <div class="footer py-2">
     <b-container fluid>
       <div class="d-flex">
         <!--flex-grow-1 是让内容占据可用的所有空间-->
@@ -8,7 +8,7 @@
           <div>Copyright©2023隐入（杭州）科技有限公司版权所有</div>
         </div>
         <!--这里要做一个媒体查询或者column-->
-        <b-row align-content="between" class="mx-4">
+        <b-row align-content="center" class="mx-4">
           <b-col class="footer-text" id="wechat">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-wechat icon" viewBox="0 0 16 16">
               <path
@@ -56,7 +56,9 @@ export default {
 
 <style scoped>
 .footer {
+  box-shadow: rgba(54, 54, 54, 0.15) 1px -1px 15px;
   background-color: rgba(255, 255, 255, 0.0); /* 设置 footer 的背景颜色 */
+  backdrop-filter: blur(10px); /* 添加毛玻璃效果，模糊半径为 10px */
 }
 
 .footer-text {
