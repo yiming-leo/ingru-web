@@ -11,26 +11,27 @@
     <div v-smooth-scrollbar="{ options: { damping: 0.05 } }" class="scroll-container">
       <!--第1部分-->
       <!--放在首页的视频-->
-      <div id="video" class="video-container">
+      <div id="#top" class="top-container">
+<!--        top-->
         <DisplayVideo></DisplayVideo>
       </div>
-
       <!--第2部分-->
       <!--关于隐入-->
       <div id="#about" class="about-container">
-        11111111111111111111
+<!--        about-->
+
       </div>
       <!--第3部分-->
       <!--隐入业务-->
       <div id="#service" class="service-container">
+<!--        service-->
         <DisplayVideo></DisplayVideo>
-        <router-link to="#contact">1111</router-link>
       </div>
       <!--第4部分-->
       <!--联系我们-->
-
       <div id="#contact" class="contact-container">
-
+<!--        contact-->
+        <DisplayVideo></DisplayVideo>
       </div>
     </div>
   </div>
@@ -63,7 +64,7 @@ export default {
   height: 100%; /* !!!三方库与原生js冲突开关!!! */
 }
 
-video {
+video { /* 控制DisplayVideo内部的video标签的工具 */
   width: 100%;
   height: 100%;
   object-fit: cover; /* 或者使用 "object-fit: fill;" */
@@ -85,7 +86,7 @@ video {
   z-index: 500;
 }
 
-.video-container {
+.top-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -101,11 +102,11 @@ video {
 
 .service-container {
   /* 添加额外的上边距，以避免内容被视频容器遮挡 */
-  padding-top: 200vh; /* 使用视频容器的高度作为上边距 */
+  padding-top: 100vh; /* 使用视频容器的高度作为上边距 */
 }
 
 .contact-container {
   /* 添加额外的上边距，以避免内容被视频容器遮挡 */
-  padding-top: 300vh; /* 使用视频容器的高度作为上边距 */
+  padding-top: 100vh; /* 使用视频容器的高度作为上边距 */
 }
 </style>

@@ -36,6 +36,7 @@ export default {
         {index: 4, link_url: "#contact", text: "联系我们"},
       ],
       tab_link_list: [
+        {index: 0, link_url: "#top", text: "官网顶部", link_element_id: "top"},
         {index: 1, link_url: "#about", text: "关于隐入", link_element_id: "about"},
         {index: 2, link_url: "#service", text: "隐入业务", link_element_id: "service"},
         {index: 3, link_url: "/investment", text: "投资组合"},
@@ -58,11 +59,19 @@ export default {
         if (targetElement) {
           const offsetTop = targetElement.offsetTop; // 获取目标元素距离页面顶部的偏移量
           const scrollOffset = window.scrollY; // 获取当前页面滚动的偏移量
-          const distance = offsetTop - scrollOffset; // 计算目标元素与当前页面顶部的距离
 
+          let distance = 0;
+          console.log("targetId", targetId)
+          //特殊判断#top锚点
+          if (String(targetId) === "#top") {
+            console.log("侦测到", targetId)
+            distance = offsetTop - scrollOffset;
+          } else {
+            distance = offsetTop - scrollOffset + window.innerHeight; // 计算目标元素与当前页面顶部的距离
+          }
           // 使用 requestAnimationFrame() 实现平滑滚动效果
           requestAnimationFrame((currentTime) => {
-            const duration = 1500; // 滚动持续时间（以毫秒为单位）
+            const duration = 1700; // 总滚动持续时间（以毫秒为单位）
             let startTime = currentTime;
 
             const easeOutCubic = (t, b, c, d) => {
@@ -73,7 +82,6 @@ export default {
             const smoothScroll = (currentTime) => {
               if (!startTime) startTime = currentTime;
               const timeElapsed = currentTime - startTime;
-              console.log("timeElapsed", timeElapsed);
 
               // 添加延迟
               if (timeElapsed < delay) {
@@ -82,14 +90,13 @@ export default {
               }
 
               const scrollAmount = easeOutCubic(timeElapsed - delay, scrollOffset, distance, duration);
-              console.log("scrollAmount", scrollAmount);
               window.scrollTo(0, scrollAmount);
               if (timeElapsed - delay < duration) {
                 requestAnimationFrame(smoothScroll);
               }
             };
 
-            const delay = 500; // 延迟时间（以毫秒为单位）
+            const delay = 400; // 初始延迟时间（以毫秒为单位）
             setTimeout(() => {
               requestAnimationFrame(smoothScroll); // 开始平滑滚动
             }, delay);
@@ -110,14 +117,14 @@ export default {
 
 .nav-select-list:hover .nav-text {
   background: rgba(231, 218, 218, 0.2);
-  transition: background 0.5s ease, color 0.5s ease, border 0.7s ease;
+  transition: background 0.5s ease, color 0.5s ease, border 0.5s ease;
 //border-radius: 3px; border: #eaeaea 2px solid;
 }
 
 .nav-text {
   color: white;
   text-shadow: rgba(79, 74, 74, 0.8) 1px 1px 5px;
-  transition: background 0.5s ease, color 0.5s ease, border 0.7s ease;
+  transition: background 0.7s ease, color 0.7s ease, border 1s ease;
 //border-radius: 3px; border: rgba(234, 234, 234, 0.0) 2px solid;
 }
 
