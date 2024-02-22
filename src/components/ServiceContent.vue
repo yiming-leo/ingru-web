@@ -56,7 +56,7 @@
 .about-decoration {
   opacity: 0.3;
   font-weight: 700;
-  font-size: 12vh;
+  font-size: 10vh;
 //border: #000000 1px solid;
 }
 

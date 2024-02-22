@@ -36,7 +36,7 @@
     </b-container>
 
     <b-popover target="wechat" triggers="hover" placement="top">
-
+      <img src="@/assets/img/wechat_qr_code.png" alt="你的浏览器暂不支持显示此图片">
     </b-popover>
     <b-popover target="email" triggers="hover" placement="top">
       it@ingru.ai

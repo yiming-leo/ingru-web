@@ -7,8 +7,8 @@
       </div>
 
       <div class="location-tab">
-        <div class="text-white about-location-btn" @click="changeToLocation(1)">杭州</div>
-        <div class="text-white about-location-btn ml-4" @click="changeToLocation(2)">上海</div>
+        <div class="text-white about-location-btn" @click="cityChange(1)">杭州</div>
+<!--        <div class="text-white about-location-btn ml-4" @click="cityChange(2)">上海</div>-->
       </div>
 
       <div class="all-container">
@@ -49,7 +49,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -58,18 +57,6 @@
 export default {
   data() {
     return {
-      companyLocationList: [
-        {
-          index: 1,
-          city: '杭州',
-          location: '浙江省杭州市滨江区星城中心B座1101',
-          email: 'it@ingru.ai',
-          telephone: '+86 17788886513\n+86 13918186286',
-          bk_map: "@/assets/img/cop_map_hz.png"
-        },
-        {index: 2, city: '上海', location: '', email: '', telephone: '', bk_map: "@/assets/img/cop_map_sh.png"}
-      ],
-
       default_city: '杭州',
       default_location: '浙江省杭州市滨江区星城中心B座1101',
       default_email: 'it@ingru.ai',
@@ -79,19 +66,23 @@ export default {
   },
   computed: {},
   methods: {
-    changeToLocation(location) {
+    cityChange(location) {
       if (location === 1) {
         this.default_city = '杭州'
         this.default_location = '浙江省杭州市滨江区星城中心B座1101'
         this.default_email = 'it@ingru.ai'
         this.default_telephone = '+86 17788886513\n+86 13918186286'
         this.default_bk_map = '@/assets/img/cop_map_hz.png'
+        //切换城市背景
+        this.$emit('change-location-image', 'hz')
       } else if (location === 2) {
         this.default_city = '上海'
         this.default_location = '上海市青浦区双联路158号1幢11层S区005室'
         this.default_email = 'it@ingru.ai'
         this.default_telephone = '+86 18916939905'
         this.default_bk_map = '@/assets/img/cop_map_sh.png'
+        //切换城市背景
+        this.$emit('change-location-image', 'sh')
       }
       const element = document.querySelector('.all-container');
       element.classList.remove('animate-location'); // 先移除动画类名
@@ -146,7 +137,7 @@ export default {
   border-radius: 2px;
   cursor: pointer;
   backdrop-filter: blur(0px);
-  border: rgba(255, 255, 255, 0.00) 2px solid;
+  border: rgba(255, 255, 255, 1) 2px solid;
   transition: all 0.5s ease;
 }
 
@@ -217,6 +208,12 @@ export default {
   display: flex;
   align-self: start;
   flex-direction: column;
+
+  padding: 10px 15px 10px 15px;
+  border-radius: 5px;
+  backdrop-filter: blur(3px);
+  box-shadow: rgba(54, 54, 54, 0.15) 2px 2px 15px;
+  background-color: rgba(255, 255, 255, 0.1);
 
 //border: black 1px solid;
 }

@@ -23,7 +23,11 @@
       </div>
       <!--联系我们-->
       <div id="#contact" class="contact-container">
-        <ContactContent></ContactContent>
+        <div class="contact-container-lg" :style="backgroundImageStyle">
+          <div class="contact-container-bg">
+            <ContactContent @change-location-image="handleLocationImageChange"></ContactContent>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -48,18 +52,21 @@ export default {
     DisplayVideo,
     MainMenu,
   },
-  props: {
-    companyLocationImage: {
-      type: String,
-      required: true,
-      default: "@/assets/img/cop_map_hz.png"
+  data() {
+    return {
+      location_abbr: 'hz'
     }
   },
-  data() {
-    return {}
+  computed: {
+    backgroundImageStyle() {
+      return {
+        backgroundImage: `url(${require('@/assets/img/cop_map_' + this.location_abbr + '.png')})`,
+        transform: 'translateX(0)'
+      };
+    }
   },
   mounted() {
-    //--------------丝滑锚点滚动------------
+    //--------------------------丝滑锚点滚动------------------------
     const anchors = document.querySelectorAll('a[href^="/#"]');
     // 初始化 SmoothScrollbar，绑定到id=scroll-container上
     const scrollbar = SmoothScrollbar.init(document.getElementById('scroll-container'));
@@ -87,15 +94,18 @@ export default {
         }
       });
     });
-    //----------------------------------
+    //----------------------------------------------------------
   },
-  methods: {}
+  methods: {
+    handleLocationImageChange(newLocationImageAbbr) {
+      this.location_abbr = newLocationImageAbbr;
+    }
+  }
 }
 </script>
 <style scoped>
 
 /* --------------------Scroll-------------------------- */
-
 /* 丝滑滚动元素 */
 .scroll-container {
   width: 100%;
@@ -104,7 +114,6 @@ export default {
 }
 
 /* --------------------Navbar-------------------------- */
-
 .main-menu {
   position: fixed;
   top: 0;
@@ -114,7 +123,6 @@ export default {
 }
 
 /* --------------------Footer-------------------------- */
-
 .footer {
   position: fixed;
   bottom: 0;
@@ -124,7 +132,6 @@ export default {
 }
 
 /* --------------------Top-------------------------- */
-
 .top-container {
   position: relative;
   top: 0;
@@ -141,7 +148,6 @@ video { /* 控制DisplayVideo内部的video标签的工具 */
 }
 
 /* --------------------About-------------------------- */
-
 .about-container {
   background-image: url("@/assets/img/about_bg.jpg");
   background-position: center;
@@ -154,32 +160,38 @@ video { /* 控制DisplayVideo内部的video标签的工具 */
 }
 
 /* --------------------Service-------------------------- */
-
 .service-container {
   position: relative;
-  /* 添加额外的上边距，以避免内容被视频容器遮挡 */
-//padding-top: 100vh; /* 使用视频容器的高度作为上边距 */
+  width: 100%;
+  height: 100vh;
 }
 
 /* --------------------Contact-------------------------- */
 /* before可以再背景图片前面加一层遮罩层 */
-.contact-container::before {
+
+.contact-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.contact-container-lg {
+  background-size: cover;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 200;
+}
+
+.contact-container-bg {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(to bottom right, rgba(44, 155, 196, 0.7), rgba(44, 69, 196, 0.7), rgba(97, 33, 225, 0.65)); /* 半透明蓝色背景 */
-}
-
-.contact-container {
-  background-image: url('@/assets/img/cop_map.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  width: 200%;
-  height: 100vh;
+  background-image: linear-gradient(to bottom right, rgba(44, 155, 196, 0.7), rgba(44, 69, 196, 0.7), rgba(97, 33, 225, 0.65));
+  z-index: 195;
 }
 </style>
