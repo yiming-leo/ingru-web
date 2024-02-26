@@ -15,21 +15,26 @@ const routes = [
     name: 'recruitment',
     component: () => import('../views/RecruitmentView.vue')
   },
-  {//投资，展示投资组合
-    path: '/investment',
-    name: 'investment',
-    component: () => import('../views/InvestmentView.vue')
+  {//研发团队
+    path: '/development_team',
+    name: 'development_team',
+    component: () => import('../views/DevelopmentTeamView.vue')
   },
-  {//管理，管理一些表单信息
-    path: '/management',
-    name: 'management',
-    component: () => import('../views/ManagementView.vue')
-  },
-  {//关于，一些次要内容
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  },
+  // {//投资，展示投资组合
+  //   path: '/investment',
+  //   name: 'investment',
+  //   component: () => import('../views/InvestmentView.vue')
+  // },
+  // {//管理，管理一些表单信息
+  //   path: '/management',
+  //   name: 'management',
+  //   component: () => import('../views/ManagementView.vue')
+  // },
+  // {//关于，一些次要内容
+  //   path: '/about',
+  //   name: 'about',
+  //   component: () => import('../views/AboutView.vue')
+  // },
 ]
 
 const router = new VueRouter({

@@ -7,8 +7,12 @@
 </template>
 
 <script>
-export default{
-  name: "recruitment"
+export default {
+  name: "recruitment",
+  mounted() {
+    let offset = ''
+  },
+  methods: {}
 }
 </script>
 

@@ -4,8 +4,10 @@
       <div class="d-flex">
         <!--flex-grow-1 是让内容占据可用的所有空间-->
         <div class="footer-text mr-auto mx-2 text-left">
-          <div>浙江省杭州市滨江区星城中心B座1101&nbsp;|&nbsp;浙ICP备18038813号</div>
-          <div>Copyright©2023隐入（杭州）科技有限公司版权所有</div>
+          <div>浙江省杭州市滨江区星城中心B座1101&nbsp;|&nbsp;
+            <a href="http://beian.miit.gov.cn/" class="beian">浙ICP备2024065338号</a>
+          </div>
+          <div>Copyright©2024隐入（杭州）科技有限公司版权所有</div>
         </div>
         <!--这里要做一个媒体查询或者column-->
         <b-row align-content="center" class="mx-4">
@@ -36,7 +38,8 @@
     </b-container>
 
     <b-popover target="wechat" triggers="hover" placement="top">
-      <img src="@/assets/img/wechat_qr_code.png" alt="你的浏览器暂不支持显示此图片">
+      <img src="@/assets/img/wechat_qr_code.png" alt="你的浏览器暂不支持显示此图片" width="100px" height="100px">
+      <div>打开微信扫一扫</div>
     </b-popover>
     <b-popover target="email" triggers="hover" placement="top">
       it@ingru.ai
@@ -49,9 +52,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style scoped>
@@ -64,7 +65,11 @@ export default {
 .footer-text {
   font-size: 12px;
   color: #d2d2d2;
-  //text-shadow: rgba(45, 45, 45, 0.6) 0px 1px 0.5px;
+//text-shadow: rgba(45, 45, 45, 0.6) 0px 1px 0.5px;
+}
+
+.beian {
+  color: #d2d2d2;
 }
 
 .icon {
