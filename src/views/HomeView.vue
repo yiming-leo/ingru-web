@@ -20,7 +20,6 @@
       </div>
       <!--隐入业务-->
       <div id="#service" class="service-container" @scroll="serviceParallaxScroll">
-
         <div class="service-cortina">
           <div class="service-background"></div>
         </div>
@@ -126,20 +125,16 @@ export default {
     serviceParallaxScroll() {
       const scrollbar = SmoothScrollbar.get(document.getElementById('#service'));
       // console.log('scrollbar: ', scrollbar)
-      const scrollTop = scrollbar.offset.y;
-      this.serviceForegroundOffset = scrollTop * 0.95; // 调整视差滚动速度(x>1:上下图层反向滚动, 1:前景不动背景动, 0<x<1: 数值越大，视差越明显)
+      if (scrollbar) {
+        const scrollTop = scrollbar.offset.y;
+        this.serviceForegroundOffset = scrollTop * 0.95; // 调整视差滚动速度(x>1:上下图层反向滚动, 1:前景不动背景动, 0<x<1: 数值越大，视差越明显)
+      }
     },
     handleScroll(status) {
       const scrolledPercentage = (status.offset.y / window.innerHeight) * 100; // 计算滚动位置占视口高度的百分比
       // console.log('scrolledPercentage ', scrolledPercentage)
-      if (scrolledPercentage > 0) {
-        this.isScrolled = true; // 如果滚动位置超过100，设置为true
-        // console.log('触发', this.isScrolled)
-      } else {
-        this.isScrolled = false; // 否则为false
-      }
+      this.isScrolled = scrolledPercentage > 0;
     }
-
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll); // 在组件销毁前移除滚动事件监听器
@@ -159,7 +154,6 @@ export default {
 /* --------------------Navbar-------------------------- */
 
 .scrolled {
-
   padding: 10px 20px 10px -5px; /* 调整navbar宽度和高度的地方 */
   backdrop-filter: blur(2px);
   background-color: rgba(255, 255, 255, 0.8);
@@ -179,15 +173,6 @@ export default {
   margin: 10px 10px 10px 0px;
 
   transition: all ease-in-out 0.3s;
-}
-
-/* --------------------Footer-------------------------- */
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 500;
 }
 
 /* --------------------Top-------------------------- */
@@ -224,7 +209,6 @@ video { /* 控制DisplayVideo内部的video标签的工具 */
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-
 }
 
 .about-cortina {
@@ -243,7 +227,7 @@ video { /* 控制DisplayVideo内部的video标签的工具 */
   overflow-y: scroll;
   display: flex;
 
-  //border: #dbe2ec 1px solid;
+//border: #dbe2ec 1px solid;
 }
 
 .service-cortina { /* 再背景后面的幕布 */
@@ -273,7 +257,7 @@ video { /* 控制DisplayVideo内部的video标签的工具 */
 
 .service-foreground {
   width: 100vw;
-  //border: #e77878 1px solid;
+//border: #e77878 1px solid;
 }
 
 /* --------------------Contact-------------------------- */
@@ -303,4 +287,13 @@ video { /* 控制DisplayVideo内部的video标签的工具 */
   background-image: linear-gradient(to bottom right, rgba(44, 155, 196, 0.4), rgba(44, 69, 196, 0.4), rgba(97, 33, 225, 0.35));
   z-index: 195;
 }
+
+/* --------------------Footer-------------------------- */
+.footer {
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+}
+
 </style>

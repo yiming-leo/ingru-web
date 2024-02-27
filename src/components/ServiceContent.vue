@@ -182,7 +182,6 @@ export default {
   background-size: cover;
   background-position: center;
 
-
   //border: #2f6ca9 1px solid;
 }
 
@@ -222,7 +221,7 @@ export default {
 
 .display-name {
   text-align: left;
-  padding: 10px 10px 5px 10px;
+  padding: 10px 10px 5px 15px; /* 改变右边文字离左边的间隙 */
 
   font-size: 25px;
   font-weight: 800;
@@ -233,7 +232,7 @@ export default {
 .display-description {
   width: 80%;
   text-align: left;
-  margin: 15px 10px 5px 10px;
+  margin: 15px 10px 5px 15px; /* 改变右边文字离左边的间隙 */
 
   font-size: 20px;
 

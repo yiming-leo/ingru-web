@@ -76,28 +76,30 @@ export default {
   border: rgba(31, 72, 224, 1) 2px solid;
 
   backdrop-filter: blur(5px);
-  //text-shadow: rgba(79, 74, 74, 0.8) 1px 1px 5px;
-  transition: background 0.7s ease, color 0.7s ease, border 1s ease;
+//text-shadow: rgba(79, 74, 74, 0.8) 1px 1px 5px; transition: background 0.7s ease, color 0.7s ease, border 1s ease;
 }
 
 .nav-toggle {
-  background-color: rgba(24, 64, 196, 0.8);
-  border-radius: 5px;
+//background-color: rgba(24, 64, 196, 0.8); border: rgba(31, 72, 224, 1) 2px solid !important;
+  border-radius: 2px;
   backdrop-filter: blur(10px);
 
   transition: all 0.25s ease;
 }
 
 .nav-toggle:hover {
-  background-color: rgba(24, 64, 196, 1);
-  border-radius: 5px;
-  backdrop-filter: blur(10px);
+  background-color: rgba(24, 64, 196, 1);;
 
   transition: all 0.25s ease;
 }
 
+.nav-toggle:hover .nav-toggle-btn {
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
 .nav-toggle-btn {
-  color: aliceblue;
+  color: rgba(31, 72, 224, 1);
   font-size: 24px;
 }
 
