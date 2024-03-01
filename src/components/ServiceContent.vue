@@ -1,3 +1,4 @@
+<!--首页业务内容展示的文件-->
 <template>
   <div class="mx-4 container">
     <div class="big-box">
@@ -44,21 +45,21 @@ export default {
           icon: '',
           name: '医疗数据分析',
           description: '打造领先的医疗数据分析平台，深度挖掘和分析医疗数据，提供可靠的洞察和决策支持，助力医疗行业迈向智能化和高效化的未来',
-          background: require('@/assets/img/bk4.jpg')
+          background: require('@/assets/img/main/bk4.jpg')
         },
         {
           index: 2,
           icon: '',
           name: '医疗影像处理',
           description: '搭建先进的处理系统，通过精准的图像分析和处理技术，为临床医生提供可靠的诊断支持，引领医疗科技向更高水平发展',
-          background: require('@/assets/img/bk7.jpg')
+          background: require('@/assets/img/main/bk7.jpg')
         },
         {
           index: 3,
           icon: '',
           name: '预测模型构建',
           description: '开发前沿的医疗预测模型平台，持续分析医疗数据，迭代模型产品，为医疗行业提供可靠的预测模型，为未来的医疗决策提供重要支持',
-          background: require('@/assets/img/bk9.jpg')
+          background: require('@/assets/img/main/bk9.jpg')
         },
       ]
     }
@@ -74,12 +75,12 @@ export default {
     const leftTextObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          console.log('animation-content 进入视口');
+          // console.log('animation-content 进入视口');
           // 在这里可以触发你想要的动画效果
           gsap.to(leftTitleElement, {opacity: 1, y: 0, duration: 2.5});
           gsap.to(leftTextElements, {opacity: 1, y: 0, duration: 2.5});
         } else {
-          console.log('animation-content 离开视口');
+          // console.log('animation-content 离开视口');
           // 在这里可以触发你想要的反向动画效果
           gsap.set(leftTitleElement, {opacity: 0, y: 150, duration: 2});
           gsap.set(leftTextElements, {opacity: 0, y: 150, duration: 2});
@@ -92,10 +93,10 @@ export default {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          console.log('animation-content 进入视口');
+          // console.log('animation-content 进入视口');
           gsap.to(imgElements, {opacity: 1, duration: 2});
         } else {
-          console.log('animation-content 离开视口');
+          // console.log('animation-content 离开视口');
           gsap.set(imgElements, {opacity: 0, duration: 2});
         }
       });
@@ -115,7 +116,7 @@ export default {
 }
 
 .container {
-  height: 130vh; /* 文字前景高度，这里改动后还要在HomeView里面调整.service-background的高度 */
+  height: 100vh; /* 文字前景高度，这里改动后还要在HomeView里面调整.service-background的高度 */
   width: 100vw;
 
   display: flex;
@@ -157,7 +158,6 @@ export default {
 .right-animation {
   height: 90%;
   width: 60%;
-  margin-top: 5%;
 
   display: flex;
   flex-direction: column;

@@ -1,3 +1,4 @@
+<!--Profile Card是专门为了给团队介绍页面增加任务用的卡片-->
 <template>
   <div class="profile-card">
     <img class="avatar" :src="avatar" alt="Your Browser Does Not Support Such of This Image"/>
@@ -31,7 +32,7 @@ export default {
   align-items: center;
 }
 
-.detail{
+.detail {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -45,7 +46,7 @@ export default {
   width: 275px;
   border-radius: 999px;
 
-border: rgba(154, 114, 224, 0.8) 1px solid;
+  border: rgba(154, 114, 224, 0.8) 1px solid;
 }
 
 .name {
@@ -60,7 +61,7 @@ border: rgba(154, 114, 224, 0.8) 1px solid;
   justify-content: center;
   align-items: center;
 
-  //border: rgba(154, 114, 224, 0.8) 1px solid;
+//border: rgba(154, 114, 224, 0.8) 1px solid;
 }
 
 .occupation {
@@ -75,7 +76,7 @@ border: rgba(154, 114, 224, 0.8) 1px solid;
   justify-content: center;
   align-items: center;
 
-  //border: rgba(154, 114, 224, 0.8) 1px solid;
+//border: rgba(154, 114, 224, 0.8) 1px solid;
 }
 
 .description {
@@ -93,6 +94,6 @@ border: rgba(154, 114, 224, 0.8) 1px solid;
   padding: 0 20px 0 20px;
   text-align: left;
 
-  //border: rgba(154, 114, 224, 0.8) 1px solid;
+//border: rgba(154, 114, 224, 0.8) 1px solid;
 }
 </style>

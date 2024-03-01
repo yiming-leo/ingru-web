@@ -2,7 +2,7 @@
 <template>
   <div class="development_team">
     <div id="main-menu" :class="{ 'main-menu': true, 'scrolled': isScrolled }">
-      <MainMenu></MainMenu>
+      <MainMenu text-color="black"></MainMenu>
     </div>
     <div id="scroll-container" v-smooth-scrollbar="{ options: {damping: 0.05} }" class="scroll-container">
       <div class="team-container">
@@ -54,7 +54,7 @@
 
 <script>
 import MainMenu from "@/components/MainMenu.vue";
-import MainDisplay from "@/components/MainDisplay.vue";
+import MainDisplay from "@/components/TopContent.vue";
 import ProfileCard from "@/components/ProfileCard.vue";
 import Footer from "@/components/Footer.vue";
 import SmoothScrollbar from "smooth-scrollbar";
@@ -110,7 +110,7 @@ export default {
         {
           index: 1,
           name: '杨波',
-          avatar: require('@/assets/avatar/yangbo.png'),
+          avatar: require('@/assets/img/team/yangbo.png'),
           occupation: 'Senior Engineer',
           description: '产业大数据、互联网医疗、人工智能项目架构专家，前浙江智慧网络医疗、优健康、火石创造技术总监'
         },
@@ -119,7 +119,7 @@ export default {
           name: '陶涛',
           avatar: '',
           occupation: 'Senior Engineer',
-          description: '如：曾任腾讯微视设计组负责人、高级设计师，MSRA-HCI组成员，前美年健康产品总监'
+          description: '药理学硕士、丰富医学知识背景、优秀的软件开发者和生信工程师，前同花顺医学部大数据分析师和项目专员'
         },
         {
           index: 3,
@@ -201,8 +201,9 @@ export default {
 .team-container {
   width: 100vw;
   height: 100%; /*页面高度*/
+  padding: 0 0 50px 0;
   background-color: white;
-  background-image: url("@/assets/img/bk10.png");
+  background-image: url("@/assets/img/background/bk10.png");
   background-size: cover;
   background-position: center;
 

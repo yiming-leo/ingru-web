@@ -1,3 +1,4 @@
+<!--首页关于我们展示的文件-->
 <template>
   <div class="mx-4 container">
     <div class="big-box">

@@ -1,3 +1,4 @@
+<!--菜单栏文件-->
 <template>
   <div>
     <nav class="navbar bg-body-tertiary">
@@ -5,41 +6,60 @@
         <!--公司logo和名称-->
         <b-navbar-brand class="navbar-brand" href="/">
           <img src="../assets/icon/pure_logo.png" class="align-middle" alt="Menu" width="50" height="50">
-          <span class="fs-4 align-middle">隐入科技</span>
+          <b class="align-middle" :class="{ 'black-text': textColor === 'black', 'white-text': textColor === 'white' }">
+            隐入科技
+          </b>
         </b-navbar-brand>
-        <!--跳转链接栏-->
-        <b-navbar-toggle id="nav-toggle" class="nav-toggle" target="nav-collapse">
-          <template #default="{ expanded }">
-            <b-icon v-if="expanded" icon="chevron-bar-up" class="nav-toggle-btn"></b-icon>
-            <b-icon v-else icon="chevron-bar-down" class="nav-toggle-btn"></b-icon>
-          </template>
-        </b-navbar-toggle>
 
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item :to="tab_link.link_url" v-for="tab_link in tab_link_list" :key="tab_link.index"
-                        class="ml-auto nav-select-list">
-              <div class="nav-text py-1 px-2">{{ tab_link.text }}</div>
-            </b-nav-item>
-          </b-navbar-nav>
-        </b-collapse>
+        <b-navbar-nav class="mr-auto tab-bar">
+          <b-nav-item :to="navbar_link.link_url" v-for="navbar_link in navbar_link_list" :key="navbar_link.index">
+            <div class="py-1 px-2 navbar-decoration"
+                 :class="{ 'black-text': textColor === 'black', 'white-text': textColor === 'white'}">
+              {{ navbar_link.text }}
+            </div>
+          </b-nav-item>
+        </b-navbar-nav>
+        <!--跳转链接栏-->
+        <!--        <b-navbar-toggle id="nav-toggle" class="nav-toggle" target="nav-collapse">-->
+        <!--          <template #default="{ expanded }">-->
+        <!--            <b-icon v-if="expanded" icon="chevron-bar-up" class="nav-toggle-btn"></b-icon>-->
+        <!--            <b-icon v-else icon="chevron-bar-down" class="nav-toggle-btn"></b-icon>-->
+        <!--          </template>-->
+        <!--        </b-navbar-toggle>-->
+
+        <!--        <b-collapse id="nav-collapse" is-nav>-->
+        <!--          <b-navbar-nav>-->
+        <!--            <b-nav-item :to="dropdown_link.link_url" v-for="dropdown_link in dropdown_link_list"-->
+        <!--                        :key="dropdown_link.index"-->
+        <!--                        class="ml-auto nav-select-list">-->
+        <!--              <div class="nav-text py-1 px-2">{{ dropdown_link.text }}</div>-->
+        <!--            </b-nav-item>-->
+        <!--          </b-navbar-nav>-->
+        <!--        </b-collapse>-->
       </b-navbar>
     </nav>
   </div>
 </template>
 
 <script>
+
+
 export default {
+  props: {
+    // 接收父组件传递的 textColor prop
+    textColor: {
+      type: String,
+      default: 'white'
+    },
+  },
   data() {
     return {
-      tab_link_list: [
-        {index: 1, link_url: "#top", text: "官网顶部"},
-        {index: 2, link_url: "#about", text: "关于隐入"},
-        {index: 3, link_url: "#service", text: "业务内容"},
-        {index: 4, link_url: "#contact", text: "合作联系"},
-        {index: 5, link_url: "/development_team", text: "研发团队"},
-        // {index: 5, link_url: "/investment", text: "投资组合"},
-        {index: 6, link_url: "/recruitment", text: "诚聘英才"},
+      //上侧的链接列表，只能在进行url跳转，不得在本地锚点跳转
+      navbar_link_list: [
+        {index: 1, link_url: "/", text: "首页"},
+        // {index: 2, link_url: "/service", text: "业务内容"},
+        {index: 3, link_url: "/development_team", text: "研发团队"},
+        {index: 4, link_url: "/recruitment", text: "招贤纳士"},
       ],
       isSidebarOpen: false,
     };
@@ -47,17 +67,52 @@ export default {
   mounted() {
     //这里有个丝滑滚动已被绑定到HomeView上
   },
-
   computed: {},
   methods: {},
 }
 </script>
 
 <style scoped>
+/* 添加了 black-text 和 white-text 类 */
+.black-text {
+  color: #000;
+}
+
+.white-text {
+  color: #fff;
+}
+
+.tab-bar {
+  display: flex;
+  flex-direction: row;
+
+  font-size: 20px;
+}
+
+/* ----------首页、研发团队、招贤纳士...-------------- */
+.navbar-decoration {
+  margin: 0 5px 0 5px;
+
+  border-top: rgba(2, 64, 185, 0) 2px solid;
+  border-bottom: rgba(2, 64, 185, 0) 2px solid;
+  font-weight: 600;
+
+  transition: all ease-in-out 0.3s;
+}
+
+.navbar-decoration:hover {
+  border-bottom: #ffffff 2px solid;
+  transition: all ease-in-out 0.3s;
+}
+
 .navbar-brand {
   color: #2c3e50;
   padding-right: 5px;
   border-radius: 5px;
+}
+
+.navbar-brand b {
+//color: #000000;
 }
 
 .nav-select-list:hover .nav-text {
@@ -80,11 +135,7 @@ export default {
 }
 
 .nav-toggle {
-//background-color: rgba(24, 64, 196, 0.8); border: rgba(31, 72, 224, 1) 2px solid !important;
-  border-radius: 2px;
-  backdrop-filter: blur(10px);
-
-  transition: all 0.25s ease;
+//background-color: rgba(24, 64, 196, 0.8); border: rgba(31, 72, 224, 1) 2px solid !important; border-radius: 2px; backdrop-filter: blur(10px); transition: all 0.25s ease;
 }
 
 .nav-toggle:hover {
