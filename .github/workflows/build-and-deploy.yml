@@ -1,4 +1,4 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy to Server
 
 on:
   push:
@@ -6,22 +6,33 @@ on:
       - master  # 可以根据你的需要修改触发的分支
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Build Vue Project
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.19.0'
-      - run: npm install
-      - run: npm run build
+      - name: Install Dependencies and Build
+        run: |
+          npm install
+          npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Copy dist to Server
+        uses: appleboy/scp-action@master
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./dist
+          host: ingru.cn
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/"
+          target: "/root/project/ingru-web"
+
+      - name: SSH into Server and Update Nginx Configuration
+        uses: appleboy/ssh-action@master
+        with:
+          host: ingru.cn
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            sed -i 's#/etc/nginx/html#/root/project/ingru-web#g' /etc/nginx/nginx.conf
+            service nginx reload
