@@ -1,0 +1,16 @@
+statges:
+  - build
+
+build:
+  image: docker:statble
+  stage: build
+  script:
+    - docker build -t ingru/ingru-official-web .
+  only:
+    - docker-deploy
+  tags:
+    - docker-runner-docker
+  cache:
+    paths:
+      - node_modules
+
