@@ -1,7 +1,3 @@
-FROM ubuntu:latest
-LABEL authors="YimingLiao"
-
-ENTRYPOINT ["top", "-b"]
 
 
 # Stage 1: 构建 Vue 项目
