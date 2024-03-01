@@ -1,9 +1,9 @@
-statges:
+stages:
   - build
 
-build:
-  image: docker:statble
+build-job:
   stage: build
+  image: docker:statble
   script:
     - docker build -t ingru/ingru-official-web .
   only:
@@ -13,4 +13,3 @@ build:
   cache:
     paths:
       - node_modules
-
