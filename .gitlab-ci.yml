@@ -1,16 +1,28 @@
 stages:
   - build
+  - deploy
 
-    
+
 build-job:
   stage: build
   image: docker:stable
   script:
-    - docker build -t ingru/ingru-official-web .
+    - docker build -t ingru/ingru-official-web .  # 默认查找有无dockerfile然后看是否执行
   only:
-    - docker-deploy
+    - docker-deploy  # 只有在 docker-deploy 分支上触发
+    - release
   tags:
-    - docker-runner-docker
+    - docker-runner-docker  # 使用docker-runner-docker来定义服务器环境和运行环境
   cache:
     paths:
       - node_modules
+
+deploy-job:
+  stage: deploy
+  image: docker:stable
+  script:  # 删除ingru容器，使用ingru/ingru-official-web镜像运行一个叫ingru的容器
+    - docker rm -f ingru && docker run --name ingru -d -p 8964:8964 ingru/ingru-official-web
+  only:
+    - release
+  tags:
+    - docker-runner-docker
