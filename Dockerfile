@@ -7,11 +7,12 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-# Stage 2: 配置 Nginx 并将编译后的文件拷贝到 Nginx 的 HTML 目录下
+# Stage 2: 生成一对一的nginx（只为此项目服务）
 FROM nginx:latest AS production-stage
+# 并将编译后的dist拷贝到nginx的HTML目录下，名字为ingru-official-web
 COPY --from=build-stage /app/dist /etc/nginx/html/ingru-official-web
-# 将 Nginx 配置拷贝到挂载卷上面去
+# 将nginx.conf(其实是conf.d里的defualt.conf)拷贝到nginx的默认配置路径上去
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-# 测试环境用8964端口
+# 测试环境用8964端口，其实不开都行，因为nginx直接读取和匹配server{}
 EXPOSE 8964
 CMD ["nginx", "-g", "daemon off;"]
