@@ -20,8 +20,10 @@ build-job:
 deploy-job:
   stage: deploy
   image: docker:stable
-  script:  # 删除ingru容器，使用ingru/ingru-official-web镜像运行一个叫ingru的容器
-    - docker rm -f ingru && docker run --name ingru -d -p 8964:8964 ingru/ingru-official-web
+  before_script:  # 如果有ingru容器就删除，如果没有就不删除
+    - if docker inspect ingru >/dev/null 2>&1; then docker rm -f ingru; fi
+  script:  # 使用ingru/ingru-official-web镜像运行一个叫ingru的容器
+    - docker run --name ingru -d -p 8964:8964 ingru/ingru-official-web
   only:
     - release
   tags:
