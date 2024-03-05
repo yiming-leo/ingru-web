@@ -22,12 +22,8 @@ jobs:
       # rsa连接服务器来复制文件
       - name: Copy dist to Server
         uses: appleboy/scp-action@master
-        with:
-          host: ingru.cn
-          username: root
-          key: ${{ secrets.HOST_SSH_RSA_KEY }}
-          source: "dist/"
-          target: "/etc/nginx/html/ingru_official_web"
+        run: |
+          scp -i ${{ secrets.HOST_SSH_RSA_KEY }} -r dist/ root@ingru.cn:/etc/nginx/html/ingru_official_web
 
       # rsa连接服务器来更新nginx和其他重载操作
       - name: Update Nginx Configuration
