@@ -3,36 +3,39 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - master  # 可以根据你的需要修改触发的分支
+      - release  # 触发流水线的分支
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
+      # 检出分支
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      # npm安装和打包成dist
       - name: Install Dependencies and Build
         run: |
           npm install
           npm run build
 
+      # rsa连接服务器来复制文件
       - name: Copy dist to Server
         uses: appleboy/scp-action@master
         with:
           host: ingru.cn
           username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.cicd }}
           source: "dist/"
-          target: "/root/project/ingru-web"
+          target: "/etc/nginx/html/ingru_official_web"
 
-      - name: SSH into Server and Update Nginx Configuration
+      # rsa连接服务器来更新nginx和其他重载操作
+      - name: Update Nginx Configuration
         uses: appleboy/ssh-action@master
         with:
           host: ingru.cn
           username: root
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.cicd }}
           script: |
-            sed -i 's#/etc/nginx/html#/root/project/ingru-web#g' /etc/nginx/nginx.conf
-            service nginx reload
+            docker exec -it nginx bash
+            nginx -s reload

@@ -82,7 +82,7 @@ export default {
         {
           index: 2,
           name: '尹荣',
-          avatar: '',
+          avatar: require('@/assets/img/team/yingrong.png'),
           occupation: '创始人兼CTO',
           description:
               '大数据、人工智能、企业架构和风险管理领域专家，前IBM、德勤、华为高级技术与管理专家'
@@ -100,7 +100,7 @@ export default {
         {
           index: 2,
           name: '阮明烽',
-          avatar: '',
+          avatar: require('@/assets/img/team/ruanmingfeng.png'),
           occupation: '独立董事兼CFA',
           description: '浙江工业大学金融系创办人、MBA导师，金融专家、投资专家'
         },
@@ -124,14 +124,14 @@ export default {
         {
           index: 3,
           name: '赵生宁',
-          avatar: '',
+          avatar: require('@/assets/img/team/zhaoshengning.jpg'),
           occupation: 'AI Engineer',
           description: ''
         },
         {
           index: 4,
           name: '廖一鸣',
-          avatar: '',
+          avatar: require('@/assets/img/team/liaoyiming.jpg'),
           occupation: 'AI Engineer',
           description: ''
         },
