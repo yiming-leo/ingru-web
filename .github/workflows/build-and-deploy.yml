@@ -25,7 +25,7 @@ jobs:
         with:
           host: ingru.cn
           username: root
-          key: ${{ secrets.cicd.HOST_SSH_RSA_KEY }}
+          key: ${{ secrets.HOST_SSH_RSA_KEY }}
           source: "dist/"
           target: "/etc/nginx/html/ingru_official_web"
 
@@ -35,7 +35,7 @@ jobs:
         with:
           host: ingru.cn
           username: root
-          key: ${{ secrets.cicd.HOST_SSH_RSA_KEY }}
+          key: ${{ secrets.HOST_SSH_RSA_KEY }}
           script: |
             docker exec -it nginx bash
             nginx -s reload
