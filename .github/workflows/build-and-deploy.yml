@@ -22,7 +22,7 @@ jobs:
       # rsa连接服务器来复制文件
       - name: Copy dist to Server
         run: |
-          echo "${{ secrets.HOST_SSH_PEM_KEY }}" > ssh_key.pem
+          echo "$HOST_SSH_PEM_KEY" > ssh_key.pem
           chmod 600 ssh_key.pem
           scp -P 22 -i ssh_key.pem -r dist/ root@ingru.cn:/etc/nginx/html/ingru_official_web
 
