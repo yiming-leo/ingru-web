@@ -25,7 +25,7 @@ jobs:
         with:
           host: ${{ env.HOST_DOMAIN }}
           username: ${{ secrets.HOST_USER }}
-          key: ${{ env.HOST_SSH_RSA_KEY }}
+          key: ${{ env.HOST_SSH_PEM_KEY }}
           source: "dist/"
           target: "/etc/nginx/html/ingru_official_web"
 
