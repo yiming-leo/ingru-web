@@ -6,15 +6,8 @@ on:
       - release  # 触发流水线的分支
 
 jobs:
-  # 打包编译
-#  build:
-#    runs-on: ubuntu-latest
-#    steps:
-
-  # 上传服务器
   deploy:
     runs-on: ubuntu-latest
-#    needs: build
     steps:
       # 检出分支
       - name: Checkout Repository
@@ -29,8 +22,8 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: ingru.cn
-          username: root
-          key: ${{ secrets.HOST_SSH_RSA_KEY }}
+          username: ingru
+          key: ${{ secrets.HOST_SSH_RSA_PC_KEY }}
           source: "dist/"
           target: "/etc/nginx/html/ingru_official_web"
 
@@ -39,8 +32,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ingru.cn
-          username: root
-          key: ${{ secrets.HOST_SSH_RSA_KEY }}
+          username: ingru
+          key: ${{ secrets.HOST_SSH_RSA_PC_KEY }}
           script: |
             docker exec -it nginx bash
             nginx -s reload
