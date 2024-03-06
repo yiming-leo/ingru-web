@@ -7,23 +7,23 @@ on:
 
 jobs:
   # 打包编译
-  build:
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+
+  # 上传服务器
+  deploy:
     runs-on: ubuntu-latest
+#    needs: build
     steps:
       # 检出分支
       - name: Checkout Repository
         uses: actions/checkout@v2
-
       # npm安装和打包成dist
       - name: Install Dependencies and Build
         run: |
           npm install
           npm run build
-  # 上传服务器
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       # rsa连接服务器来复制文件
       - name: Copy dist to Server
         uses: appleboy/scp-action@master
